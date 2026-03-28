@@ -12,6 +12,9 @@ jobs:
         steps:
           - uses: actions/checkout@v3
 
+          - name: Install dependencies
+            run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++
+
           - name: Configure with CMake
             run: cmake -B build -G Ninja
 

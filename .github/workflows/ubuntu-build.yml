@@ -1,2 +1,19 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Ubuntu C++ Build
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: action/checkout@v3
+
+          - name: Configure with CMake
+            run: cmake -B build -G Ninja
+
+          - name: Build
+            run: cmake --build build

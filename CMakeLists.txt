@@ -7,5 +7,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # ---- Executable ----
 add_executable(main
     src/main.cpp
+    src/VideoDecoder.cpp
 )
 

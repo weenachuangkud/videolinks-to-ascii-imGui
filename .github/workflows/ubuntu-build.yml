@@ -13,7 +13,10 @@ jobs:
           - uses: actions/checkout@v3
 
           - name: Install dependencies
-            run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++
+            run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++ pkg-config
+
+          - name: Install ffmpeg
+            run: sudo apt-get install -y libavformat-dev libavcodec-dev libavutil-dev libswscale-dev
 
           - name: Configure with CMake
             run: cmake -B build -S . -G Ninja

@@ -24,15 +24,16 @@ environment:
 matrix:
     fast_finish: true
 for:
--
+- 
     matrix:
         only:
             - GENERATOR: MinGW Makefiles
     build_script:
-        - set PATH=C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;%PATH:C:\Program Files\Git\usr\bin=%
+        # Rely on Appveyor's default PATH for MinGW or ensure it's correctly set up.
+        # The hardcoded path below is removed to avoid potential issues.
         - cmake -B build -G "%GENERATOR%" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS%
         - cmake --build build
--
+- 
     matrix:
         only:
             - GENERATOR: Visual Studio 12 2013

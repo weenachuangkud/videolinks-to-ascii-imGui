@@ -23,22 +23,15 @@ environment:
           CFLAGS: /WX
 matrix:
     fast_finish: true
-for:
--
-    matrix:
-        only:
-            - GENERATOR: MinGW Makefiles
-    build_script:
-        - set PATH=C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;%PATH:C:\Program Files\Git\usr\bin=%
-        - cmake -B build -G "%GENERATOR%" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS%
-        - cmake --build build
--
-    matrix:
-        only:
-            - GENERATOR: Visual Studio 12 2013
-    build_script:
-        - cmake -B build -G "%GENERATOR%" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS%
-        - cmake --build build --target glfw
+
+build_script:
+    # MinGW builds
+    - IF "%GENERATOR%"=="MinGW Makefiles" cmake -B build -G "%GENERATOR%" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS%
+    - IF "%GENERATOR%"=="MinGW Makefiles" cmake --build build
+    # Visual Studio builds
+    - IF "%GENERATOR%"=="Visual Studio 12 2013" cmake -B build -G "%GENERATOR%" -DBUILD_SHARED_LIBS=%BUILD_SHARED_LIBS%
+    - IF "%GENERATOR%"=="Visual Studio 12 2013" cmake --build build --target glfw
+
 notifications:
     - provider: Email
       to:

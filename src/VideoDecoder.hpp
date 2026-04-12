@@ -9,6 +9,7 @@
 class VideoDecoder {
 public:
     VideoDecoder(const char* url, int targetWidth, int targetHeight);
+    ~VideoDecoder(); // Destructor to free resources
 
     bool nextFrame();
     uint8_t* getRGB();

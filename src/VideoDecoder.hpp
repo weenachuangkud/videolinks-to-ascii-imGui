@@ -9,6 +9,13 @@
 class VideoDecoder {
 public:
     VideoDecoder(const char* url, int targetWidth, int targetHeight);
+    ~VideoDecoder();
+
+    VideoDecoder(const VideoDecoder&)            = delete;
+    VideoDecoder& operator=(const VideoDecoder&) = delete;
+
+    VideoDecoder(VideoDecoder&&)                 = delete;
+    VideoDecoder& operator=(VideoDecoder&&)      = delete;
 
     bool nextFrame();
     uint8_t* getRGB();
